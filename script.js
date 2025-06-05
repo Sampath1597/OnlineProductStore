@@ -4,6 +4,12 @@ function toggleMenu() {
     menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
+// Toggle Sign-In Form
+function toggleAuth() {
+    let authForm = document.getElementById("auth-form");
+    authForm.style.display = authForm.style.display === "block" ? "none" : "block";
+}
+
 // Search Products
 function searchProducts() {
     let input = document.getElementById("search").value.toLowerCase();
@@ -24,7 +30,29 @@ function addToCart(product) {
     alert(product + " added to cart!");
 }
 
-// Sign-In Function
+// Firebase Authentication
+function signUp() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            alert("Sign-Up Successful!");
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
+}
+
 function signIn() {
-    alert("Sign-In functionality coming soon!");
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            alert("Sign-In Successful!");
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
 }
