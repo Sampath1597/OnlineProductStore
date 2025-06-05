@@ -37,7 +37,10 @@ function signUp() {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            alert("Sign-Up Successful!");
+            let user = userCredential.user;
+            alert("Welcome, " + user.email + "! Sign-Up Successful.");
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
         })
         .catch((error) => {
             alert(error.message);
@@ -50,7 +53,8 @@ function signIn() {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            alert("Sign-In Successful!");
+            let user = userCredential.user;
+            alert("Welcome back, " + user.email + "! You are now signed in.");
         })
         .catch((error) => {
             alert(error.message);
