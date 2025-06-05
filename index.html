@@ -5,24 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Online Store</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script>
+      const firebaseConfig = {
+          apiKey: "AIzaSyCP1_U380lkUBQodifyTuFFLSQjegmlHPk",
+          authDomain: "your-project.firebaseapp.com",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body>
 
     <!-- Header Section -->
     <header>
-        <h1>Welcome to My Online Store</h1>
-        <div class="header-buttons">
-            <button class="signin-btn">Sign In</button>
+        <div class="auth-container">
+            <button class="signin-btn" onclick="toggleAuth()">Sign In</button>
         </div>
+        <h1>Welcome to My Online Store</h1>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     </header>
 
+    <!-- Sign-In Form (Hidden by Default) -->
+    <div id="auth-form" class="hidden">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="signIn()">Sign In</button>
+        <button onclick="signUp()">Sign Up</button>
+    </div>
+
     <!-- Navigation Menu -->
-    <nav>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <ul id="menu-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Cart</a></li>
+    <nav id="menu-list">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
@@ -32,11 +49,11 @@
     </div>
 
     <!-- Products Section -->
-    <section class="products">
+    <section id="products">
         <div class="product">
-            <img src="test product one.jpg" alt="Themisto Screwdriver Set">
+            <img src="product1.jpg" alt="Themisto Screwdriver Set">
             <h2>Themisto Precision Screwdriver Set</h2>
-            <p>Best-selling item with amazing variety of screwdrivers and tools at ₹243.</p>
+            <p>Best-selling item at ₹243.</p>
             <a href="https://www.amazon.in/THEMISTO-Themisto-Precision-Screwdriver-Electronics/dp/B07NY2WXPH?tag=sampathchatur-21" class="buy-btn" target="_blank">Buy Now</a>
             <button onclick="addToCart('Themisto Screwdriver Set')">Add to Cart</button>
         </div>
